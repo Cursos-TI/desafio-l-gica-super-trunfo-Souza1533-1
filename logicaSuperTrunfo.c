@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 // Variáveis globais
-int comp_atrib, pontos_turisticos, pontos_turisticos2, cep, cep2; // Para comparar cartas
+int comp_atrib2, comp_atrib, pontos_turisticos, pontos_turisticos2, cep, cep2; // Para comparar cartas
 char cidade[51], cidade2[51], pais[51], cod_carta[3], cod_carta2[3];
 float habitantes, habitantes2, area, area2, pib, pib2, pib_percapita, pib_percapita2, densidade_populacional, densidade_populacional2;
 long double soma, soma2;
@@ -135,8 +135,9 @@ void comparacaoAtributos() {
 // Função principal de fluxo
 int main() {
     printf("######=  M-E-N-U  =######\n");
-    printf("\n1. Registrar Cartas\n");
-    printf("2. Comparar atributos separadamente\n");
+    printf("\n1. Registrar Carta\n");
+    printf("2. Comparar um atributo\n");
+    printf("3. Comparar 2 atributos simultaneos\n");
     scanf("%d", &comp_atrib);
 
     switch (comp_atrib) {
@@ -204,8 +205,38 @@ int main() {
                             printf("%s e %s têm o mesmo PIB per capita\n", cidade, cidade2);} break;
 
                     default: break;
+                    break;
                 }
-            break;
+        case 3:
+            entradadedados();
+            printf("\nEscolha quais atributos comparar");
+            printf("\n1. Habitantes e Area");
+            printf("\n2. Area e Densidade Populacional");
+            printf("\n3. Habitantes e PIB");
+            printf("\n4. PIB e PIB per capita");
+            printf("5. Area e PIB percapita\n");
+            scanf("%d", &comp_atrib2);
+
+            switch (comp_atrib2){
+                case 1://se os dois atributos sao superiores.
+                    if (habitantes > habitantes2 && area > area2) {
+                        printf("%s tem maior número de habitantes e área maior que %s\n", cidade, cidade2);
+                    } else if (habitantes < habitantes2 && area < area2) {
+                        printf("%s tem menor número de habitantes e área menor que %s\n", cidade, cidade2);
+                    } else if (habitantes > habitantes2 && area < area2) {
+                        printf("%s tem mais habitantes, mas área menor que %s\n", cidade, cidade2);
+                    } else {
+                        printf("%s tem menos habitantes, mas área maior que %s\n", cidade, cidade2);
+                    }
+                    break;
+
+            
+            default:
+                break;
+            }
+            
+        break;
+        
 
         default:
             printf("Opção inválida!\n");
